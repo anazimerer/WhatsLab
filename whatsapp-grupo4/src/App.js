@@ -1,26 +1,70 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+//import './App.css';
 
-function App() {
+class App extends React.Component {
+  state ={
+    usuario:[
+      {
+      nomeUsuario: "",
+      mensagemUsuario: ""
+    }   
+    ],
+    valorInputUsuario:"",
+    valorInputMensagem:""
+  };
+
+  enviaMensagem = () => {  
+
+    const mensagem={      
+      usuario: this.state.valorInputUsuario,      
+      mensagem: this.state.valorInputMensagem
+    };
+
+    const novaMensagem = [...this.state.usuario, mensagem];    
+    this.setState({ usuario: novaMensagem, valorInputMensagem=""});
+  };
+
+  onChangeInputUsuario = (event) => {   
+    this.setState({ valorInputUsuario: event.target.value });
+  };
+
+  onChangeInputMensagem = (event) => {   
+    this.setState({ valorInputMensagem: event.target.value });
+  };
+
+  render () {
+    const listaDeMensagens = this.state.usuario.map((mensagem) => {
+      return (
+        <p>
+          {mensagem.nomeUsuario} : {mensagem.mensagemUsuario}
+        </p>
+      );
+    });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className= "container-de-conversa">
+       {listaDeMensagens}
+      </div>
+      <form className= "formulario-de-mensagens">
+       <input 
+       placeholder="Usuário" 
+       value={this.state.nomeUsuario}
+       onChange= {this.onChangeInputUsuario}
+       />
+       <input placeholder="Mensagem" 
+       value={this.state.mensagemUsuario}
+       onChange= {this.onChangeInputMensagem}
+       />
+       <button 
+       onClick= {this.enviaMensagem}
+       >ENVIAR
+       </button>
+
+     </form>
+
     </div>
   );
-}
+} }
 
 export default App;
