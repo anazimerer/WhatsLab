@@ -21,7 +21,7 @@ class App extends React.Component {
     };
 
     const novaMensagem = [...this.state.usuario, mensagem];    
-    this.setState({ usuario: novaMensagem, valorInputMensagem=""});
+    this.setState({ usuario: novaMensagem, valorInputMensagem:""});
   };
 
   onChangeInputUsuario = (event) => {   
