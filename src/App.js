@@ -1,20 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
+import ReactDOM from 'react-dom';
 
 const Container = styled.div`
-  width: 100%;
-  background-color: whitesmoke;
-  border: 1px solid black;   
-  height: 450px;
+  display: block;  
+  width: 60%;
+  height: 600px;
+  background-color:#F7F2E0; 
+  border: 1px solid black;     
   border-radius:5px; 
+  margin: auto;
 `
 const Secao = styled.section`
   margin-top: 0px;
-  background-color:whitesmoke;
+  background-color:#F7F2E0;
   height: 88%;
 `
 const Botao =styled.button`
   color: black;
+  background-color: #F4FA58;
   border-radius: 10px;
 `
 const Form =styled.div`
@@ -23,7 +27,7 @@ const Form =styled.div`
   justify-content: space-around;
   height:30px;
   border-top: black;
-  background-color:whitesmoke;  
+  background-color:#F7F2E0; 
   
 `
 const InputUsuario =styled.input`
@@ -36,6 +40,24 @@ const InputMensagem =styled.input`
   width:63%;
   border-radius: 10px;
   background-color:white;
+`
+const CaixaDeMensagem =styled.div`
+display: inline-flex;
+flex-direction: column;
+background-color: #F2F5A9;
+border-radius: 10px;
+margin: 10px;
+
+`
+const Usuario =styled.p`  
+  font-weight: bold;
+  padding: 5px; 
+  margin: 1px;
+`
+const Mensagem =styled.p`
+  padding: 5px;
+  padding-top: 2px;   
+  margin: 1px;
 `
 class App extends React.Component {
  
@@ -80,15 +102,21 @@ class App extends React.Component {
       event.preventDefault();
       this.enviaMensagem();
     }
-
   }
- render () {  
 
+  apagaMensagem = (event) =>{
+    ReactDOM.findDOMNode(event.target).parentNode.style.display = 'none'
+  }
+
+ render () {  
     const listaDeMensagens = this.state.dadosDaMensagem.map((objeto) => {
       return (
-        <p>
-          {objeto.usuario} : {objeto.mensagem}
-        </p>
+        <div> 
+          <CaixaDeMensagem onDoubleClick={this.apagaMensagem}>
+            <Usuario>{objeto.usuario}</Usuario>
+            <Mensagem>{objeto.mensagem}</Mensagem>
+          </CaixaDeMensagem>
+        </div>
       );
     });
 
