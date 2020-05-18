@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom';
 
 const Container = styled.div`
   display: block;  
-  width: 60%;
-  height: 600px;
+  width: 50%;
+  height: 650px;
   background-color:#F7F2E0; 
   border: 1px solid black;     
   border-radius:5px; 
@@ -14,7 +14,7 @@ const Container = styled.div`
 const Secao = styled.section`
   margin-top: 0px;
   background-color:#F7F2E0;
-  height: 88%;
+  height: 80%;
 `
 const Botao =styled.button`
   color: black;
@@ -33,12 +33,12 @@ const Form =styled.div`
 const InputUsuario =styled.input`
   width: 20%;
   border-radius: 10px;
-  background-color:white;
+  background-color:#F2F5A9;
 `
 const InputMensagem =styled.input`
   width:63%;
   border-radius: 10px;
-  background-color:white;
+  background-color:#F2F5A9;
 `
 const CaixaDeMensagem =styled.div`
 display: inline-flex;
@@ -61,6 +61,10 @@ const Mensagem =styled.p`
 const Perfil =styled.div`
 display: flex;
 justify-content: flex-end;
+`
+const Titulo= styled.h1`
+text-align:center;
+color:pink;
 `
 class App extends React.Component {
  
@@ -128,6 +132,7 @@ class App extends React.Component {
   
     return (    
     <Container>
+       <Titulo>Whats Lab</Titulo>
       <Secao>
         <p>{listaDeMensagens}</p> 
       </Secao>
