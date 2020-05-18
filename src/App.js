@@ -34,7 +34,6 @@ const InputUsuario =styled.input`
   width: 20%;
   border-radius: 10px;
   background-color:white;
-  
 `
 const InputMensagem =styled.input`
   width:63%;
@@ -59,18 +58,25 @@ const Mensagem =styled.p`
   padding-top: 2px;   
   margin: 1px;
 `
+const Perfil =styled.div`
+display: flex;
+justify-content: flex-end;
+`
 class App extends React.Component {
  
   state ={
     dadosDaMensagem:[
       {
-      nomeUsuario: "",
-      mensagemUsuario: ""
-    }  
-  ],
+        nomeUsuario: "",
+        mensagemUsuario: ""
+      },
+      {
+        nomeUsuario:"",
+        mensagemUsuario:"",
+      }
+    ],
     valorInputUsuario:"",
     valorInputMensagem:"",
-  
   };
 
   enviaMensagem = (event) => {      
@@ -78,6 +84,7 @@ class App extends React.Component {
       usuario: this.state.valorInputUsuario,      
       mensagem: this.state.valorInputMensagem
     };
+
     console.log("teste " + mensagem.usuario + mensagem.mensagem)//
 
 
@@ -90,7 +97,8 @@ class App extends React.Component {
   onChangeInputUsuario = (event) => {   
     this.setState({ valorInputUsuario: event.target.value });
     console.log(this.state.valorInputUsuario)
-  };
+  }
+   
 
   onChangeInputMensagem = (event) => {   
     this.setState({ valorInputMensagem: event.target.value });
@@ -108,19 +116,17 @@ class App extends React.Component {
     ReactDOM.findDOMNode(event.target).parentNode.style.display = 'none'
   }
 
- render () {  
-    const listaDeMensagens = this.state.dadosDaMensagem.map((objeto) => {
-      return (
+ render () {
+    const listaDeMensagens = this.state.dadosDaMensagem.map((objeto) => 
         <div> 
           <CaixaDeMensagem onDoubleClick={this.apagaMensagem}>
             <Usuario>{objeto.usuario}</Usuario>
             <Mensagem>{objeto.mensagem}</Mensagem>
           </CaixaDeMensagem>
         </div>
-      );
-    });
-
-  return (    
+    );
+  
+    return (    
     <Container>
       <Secao>
         <p>{listaDeMensagens}</p> 
@@ -138,11 +144,10 @@ class App extends React.Component {
         onKeyDown={this.onKeyDown}
         />
 
-        <Botao onClick= {this.enviaMensagem}>ENVIAR
-        </Botao>
+        <Botao onClick= {this.enviaMensagem}>ENVIAR</Botao>
      </Form>
     </Container>
-  );
-} }
+);}
+}
 
 export default App;
